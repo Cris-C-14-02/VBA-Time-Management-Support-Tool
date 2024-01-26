@@ -1,0 +1,222 @@
+Private Sub UserForm_Initialize()
+    ' Add options to the ComboBox manually
+    AddTaskForm.txtSubcategory.AddItem "School Work"
+    AddTaskForm.txtSubcategory.AddItem "Health"
+    AddTaskForm.txtSubcategory.AddItem "Social"
+    AddTaskForm.txtSubcategory.AddItem "Daily"
+    AddTaskForm.txtSubcategory.AddItem "Work-Finance"
+    AddTaskForm.txtSubcategory.AddItem "Extracurriculars"
+End Sub
+
+Private Sub AddTaskBtn_Click()
+   
+    'Set workbook
+    Set WB = ThisWorkbook
+    Set ws = WB.Worksheets("Master list")
+    
+    'initialize row counters
+    intRow = 2
+
+    'Test value of subcategory combox
+    If (txtSubcategory.Value <> "") Then
+    
+        'Test value of task txtbox
+        If (txtTask.Value <> "") Then
+        
+            'Test value of start date textBoxes
+            If (txtStartDay.Value <> "" And txtStartMonth.Value <> "" And txtStartYear.Value <> "") Then
+
+                
+                'Test value of estimated time
+                If (txtTime.Value <> "" And IsNumeric(txtTime)) Then
+                    
+                    'Go through rows, if they contain data, increment
+                    Do While (ws.Cells(intRow, "A") <> "")
+                
+                        'Increment row counter
+                        intRow = intRow + 1
+                
+                    Loop
+                                
+                    'Write subcategory into its column
+                    ws.Cells(intRow, "A") = txtSubcategory.Value
+                        
+                    'Write course into its column
+                    ws.Cells(intRow, "B") = txtCourse.Value
+                    
+                    'Write task into its column
+                    ws.Cells(intRow, "C") = txtTask.Value
+                        
+                    'Write start date into its column
+                    ws.Cells(intRow, "D") = txtStartYear.Value + "-" + txtStartMonth.Value + "-" + txtStartDay.Value
+                    ws.Cells(intRow, "D").NumberFormat = "yyyy-mm-dd;@" 'Format cell so Excel recognizes a date
+                        
+                    'Write estimated time into its column
+                    ws.Cells(intRow, "E").NumberFormat = "0.0" 'Format cell to 1 decimal
+                    ws.Cells(intRow, "E") = txtTime.Value
+                        
+                    'Write due date into its column (deadline)
+                    ws.Cells(intRow, "F") = txtDueYear.Value + "-" + txtDueMonth.Value + "-" + txtDueDay.Value
+                    ws.Cells(intRow, "F").NumberFormat = "yyyy-mm-dd;@" 'Format cell so Excel recognizes a date
+                        
+                    'Write data into corresponding sheets
+                    Dim subcategory As String
+                    subcategory = txtSubcategory.Value
+                    SubcategorySheet (subcategory)
+                        
+                Else
+                    'Give error message for no estimated time
+                    MsgBox ("Please enter a valid estimated time")
+                End If
+            
+            Else
+                'Give error message for no start date
+                MsgBox ("Please enter a start date")
+            End If
+            
+        Else
+            'Give error message for no task
+            MsgBox ("Please enter name of the task")
+        End If
+        
+    Else
+        'Give error message for no start date
+        MsgBox ("Please select a category")
+    End If
+    
+'see module 2
+    Call GraphSchoolWork
+    Call GraphHealth
+    Call GraphSocial
+    Call GraphDaily
+    Call GraphWorkFinance
+    Call GraphECs
+    
+'see module 4
+    Call NewestSchoolTaskOnTop
+    Call NewestHealthTaskToTop
+    Call NewestSocailTaskToTop
+    Call NewestDailyTaskToTop
+    Call NewestWorkFinanceTaskToTop
+    Call NewestECTaskToTop
+    
+'display tasks of the current date
+    Call ToDoList
+    
+'close add task form once submitted
+    AddTaskForm.Hide
+    
+End Sub
+
+Private Sub HelpBtn_Click()
+'Prompt the user for input
+    MsgBox ("You are going to enter information of the task including its subcategory, start date, due date and estimated time in hours. Please make sure they are in the correct format.")
+End Sub
+
+Private Sub txtSubcategory_Change()
+    'Set the txtbox visible if user selects school work
+    If (txtSubcategory.Value <> "School Work") Then
+        labelCourse.Visible = False
+        txtCourse.Visible = False
+        labelDDMMYYYY2.Visible = False
+        labelDueDate.Visible = False
+        txtDueDay.Visible = False
+        txtDueMonth.Visible = False
+        txtDueYear.Visible = False
+    Else
+        labelCourse.Visible = True
+        txtCourse.Visible = True
+        labelDDMMYYYY2.Visible = True
+        labelDueDate.Visible = True
+        txtDueDay.Visible = True
+        txtDueMonth.Visible = True
+        txtDueYear.Visible = True
+    End If
+    
+End Sub
+
+Function SubcategorySheet(subcategory As String)
+    'Set workbook
+    Set WB = ThisWorkbook
+    Set ws = WB.Worksheets(subcategory)
+    
+    'initialize row counters
+    intRow = 2
+    
+    'Go through rows, if they contain data, increment
+    Do While (ws.Cells(intRow, "A") <> "")
+                
+        'Increment row counter
+        intRow = intRow + 1
+                
+    Loop
+                            
+    If (subcategory = "School Work") Then
+    
+        'Write subcategory into its column
+        ws.Cells(intRow, "A") = txtSubcategory.Value
+                        
+        'Write course into its column
+        ws.Cells(intRow, "B") = txtCourse.Value
+                    
+        'Write task into its column
+        ws.Cells(intRow, "C") = txtTask.Value
+                        
+        'Write start date into its column
+        ws.Cells(intRow, "D") = txtStartYear.Value + "-" + txtStartMonth.Value + "-" + txtStartDay.Value
+        ws.Cells(intRow, "D").NumberFormat = "yyyy-mm-dd;@" 'Format cell so Excel recognizes a date
+                        
+        'Write estimated time into its column
+        ws.Cells(intRow, "E").NumberFormat = "0.0" 'Format cell to 1 decimal
+        ws.Cells(intRow, "E") = txtTime.Value
+                        
+        'Write due date into its column (deadline)
+        ws.Cells(intRow, "F") = txtDueYear.Value + "-" + txtDueMonth.Value + "-" + txtDueDay.Value
+        ws.Cells(intRow, "F").NumberFormat = "yyyy-mm-dd;@" 'Format cell so Excel recognizes a date
+        
+    Else
+        'Write course into its column
+        ws.Cells(intRow, "A") = txtSubcategory.Value
+        
+        'Write task into its column
+        ws.Cells(intRow, "B") = txtTask.Value
+                            
+        'Write start date into its column
+        ws.Cells(intRow, "C") = txtStartYear.Value + "-" + txtStartMonth.Value + "-" + txtStartDay.Value
+        ws.Cells(intRow, "C").NumberFormat = "yyyy-mm-dd;@" 'Format cell so Excel recognizes a date
+                            
+        'Write estimated time into its column
+        ws.Cells(intRow, "D").NumberFormat = "0.0" 'Format cell to 1 decimal
+        ws.Cells(intRow, "D") = txtTime.Value
+                
+        'no deadline and course name for the rest
+    End If
+End Function
+Sub ToDoList()
+    Dim MasterList As Worksheet
+    Dim ToDoListDAY As Worksheet
+    Dim lastRow As Long
+    Dim searchDate As Date
+    Dim i As Long
+    
+    Set MasterList = ThisWorkbook.Sheets("Master List")
+    Set ToDoListDAY = ThisWorkbook.Sheets("To-Do and Sleep")
+    
+    searchDate = Date
+    
+    lastRow = MasterList.Cells(MasterList.Rows.Count, "D").End(xlUp).Row
+    
+    ' Use a separate variable for the row index in ToDoListDAY
+    Dim targetRow As Long
+    targetRow = 3 ' Start from the 3rd row in ToDoListDAY
+    
+    For i = 2 To lastRow 'first row is the title
+        If MasterList.Cells(i, 4).Value = searchDate Then
+            ' Write data to ToDoListDAY
+            ToDoListDAY.Cells(targetRow, "A").Value = MasterList.Cells(i, "C").Value
+            ToDoListDAY.Cells(targetRow, "B").Value = MasterList.Cells(i, "D").Value
+
+            targetRow = targetRow + 1
+        End If
+    Next i
+End Sub

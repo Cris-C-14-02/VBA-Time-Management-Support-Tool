@@ -1,0 +1,59 @@
+Private Sub cbDayOfWeek_Change()
+'User selects a day of the week'
+
+
+End Sub
+
+Private Sub AddSleep_Click()
+'command button for sleep'
+
+Dim dayoftheweek As String
+Dim hoursofsleep As Double
+
+'error check sleep amount
+If Not (IsNumeric(txtSleep.Value)) Then
+        MsgBox ("Please enter a number for the hours of sleep")
+        txtSleep.Value = ""
+          '  If (txtSleep > 24) And (txtSleep < 0) Then
+          '      MsgBox ("Please enter a valid amount of sleep. It should be less than 24 hours and more than zero hours.")
+          '  End If
+Else
+    dayoftheweek = cbDayOfWeek.Value
+    hoursofsleep = txtSleep.Value
+End If
+
+'print into table
+If dayoftheweek = "Sunday" Then
+    Range("F8").Value = hoursofsleep
+ElseIf dayoftheweek = "Monday" Then
+    Range("F9").Value = hoursofsleep
+ElseIf dayoftheweek = "Tuesday" Then
+    Range("F10").Value = hoursofsleep
+ElseIf dayoftheweek = "Wednesday" Then
+    Range("F11").Value = hoursofsleep
+ElseIf dayoftheweek = "Thursday" Then
+    Range("F12").Value = hoursofsleep
+ElseIf dayoftheweek = "Friday" Then
+    Range("F13").Value = hoursofsleep
+ElseIf dayoftheweek = "Saturday" Then
+    Range("F14").Value = hoursofsleep
+End If
+
+'see module 3
+    ThisWorkbook.Worksheets("To-do and Sleep").Range("H19") = ""
+    Call SleepMessage
+
+'close sleep form once submitted
+    AddSleepForm.Hide
+
+End Sub
+
+Private Sub txtSleep_Change()
+'Amount of sleep entered'
+
+End Sub
+
+Private Sub UserForm_Click()
+'not helpful'
+
+End Sub

@@ -1,0 +1,32 @@
+Attribute VB_Name = "MentalHealthForm"
+Attribute VB_Base = "0{98C9F361-348D-4118-A5C8-DAF616B82729}{C46819B5-D7DC-4E10-AF87-CF05BABEA621}"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Attribute VB_TemplateDerived = False
+Attribute VB_Customizable = False
+Private Sub Label1_Click()
+    ThisWorkbook.FollowHyperlink Address:="https://here247.ca/", NewWindow:=True
+    Unload Me
+End Sub
+
+Private Sub Label2_Click()
+    ThisWorkbook.FollowHyperlink Address:="https://www.grhosp.on.ca/care", NewWindow:=True
+    Unload Me
+End Sub
+
+Private Sub Label3_Click()
+    ThisWorkbook.FollowHyperlink Address:="https://www.smgh.ca/", NewWindow:=True
+    Unload Me
+End Sub
+
+Private Sub Label4_Click()
+    ThisWorkbook.FollowHyperlink Address:="https://good2talk.ca/ontario/", NewWindow:=True
+    Unload Me
+End Sub
+
+Private Sub Label5_Click()
+    ThisWorkbook.FollowHyperlink Address:="https://cmha.ca/find-help/", NewWindow:=True
+    Unload Me
+End Sub

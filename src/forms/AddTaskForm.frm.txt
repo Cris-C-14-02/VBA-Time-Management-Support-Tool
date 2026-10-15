@@ -1,0 +1,59 @@
+Attribute VB_Name = "AddTaskForm"
+Attribute VB_Base = "0{71F1C342-6493-4635-8DD8-6CCE7491910B}{7505D6E9-B017-432F-AA8C-5B4E3A577B3E}"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Attribute VB_TemplateDerived = False
+Attribute VB_Customizable = False
+Option Explicit
+
+Private Sub UserForm_Initialize()
+    Dim category As Variant
+    txtSubcategory.Clear
+    For Each category In TaskCategories(): txtSubcategory.AddItem category: Next category
+    txtSubcategory_Change
+End Sub
+
+Private Sub AddTaskBtn_Click()
+    Dim starts As Date, due As Date, hours As Double, school As Boolean, saved As Boolean
+    On Error GoTo Failed
+    If Not IsTaskCategory(txtSubcategory.value) Then MsgBox "Select a listed category.", vbExclamation: Exit Sub
+    If Len(Trim$(txtTask.value)) = 0 Then MsgBox "Enter a task name.", vbExclamation: Exit Sub
+    If Not TryDateParts(txtStartYear.value, txtStartMonth.value, txtStartDay.value, starts) Then MsgBox "Enter a valid start date.", vbExclamation: Exit Sub
+    If Not TryNumber(txtTime.value, hours) Then MsgBox "Enter positive estimated hours.", vbExclamation: Exit Sub
+    school = (txtSubcategory.value = "School Work")
+    If school Then
+        If Len(Trim$(txtCourse.value)) = 0 Then MsgBox "Enter a course.", vbExclamation: Exit Sub
+        If Not TryDateParts(txtDueYear.value, txtDueMonth.value, txtDueDay.value, due) Then MsgBox "Enter a valid due date.", vbExclamation: Exit Sub
+        If due < starts Then MsgBox "Due date must be on or after start date.", vbExclamation: Exit Sub
+    End If
+    SaveTask txtSubcategory.value, txtCourse.value, txtTask.value, starts, hours, IIf(school, CVar(due), Empty)
+    saved = True
+    TaskViews.RefreshAllTaskViews
+    Me.Hide
+    Exit Sub
+Failed:
+    If saved Then
+        MsgBox "Task saved, but refresh failed: " & Err.Description & ". Run RefreshDashboard after correcting the issue.", vbExclamation
+        Me.Hide
+    Else
+        MsgBox Err.Description, vbExclamation
+    End If
+End Sub
+
+Private Sub HelpBtn_Click()
+    MsgBox "Enter a category, task, valid start date and positive estimated hours. School Work also requires a course and a due date on or after the start date.", vbInformation
+End Sub
+
+Private Sub txtSubcategory_Change()
+    Dim showSchool As Boolean
+    showSchool = (txtSubcategory.value = "School Work")
+    labelCourse.Visible = showSchool: txtCourse.Visible = showSchool
+    labelDDMMYYYY2.Visible = showSchool: labelDueDate.Visible = showSchool
+    txtDueDay.Visible = showSchool: txtDueMonth.Visible = showSchool: txtDueYear.Visible = showSchool
+End Sub
+
+Public Sub ToDoList()
+    TaskViews.RefreshTodayTasks
+End Sub

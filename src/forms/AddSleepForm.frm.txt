@@ -1,0 +1,29 @@
+Attribute VB_Name = "AddSleepForm"
+Attribute VB_Base = "0{B6F09438-BE84-4EAC-8D04-A27135966C92}{82158341-3B98-446C-A81F-DF0E75229544}"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Attribute VB_TemplateDerived = False
+Attribute VB_Customizable = False
+Option Explicit
+
+Private Sub UserForm_Initialize()
+    Dim day As Variant
+    cbDayOfWeek.RowSource = vbNullString
+    cbDayOfWeek.Clear
+    For Each day In Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        cbDayOfWeek.AddItem day
+    Next day
+End Sub
+
+Private Sub AddSleep_Click()
+    Dim hours As Double
+    On Error GoTo Failed
+    If Not IsSleepHours(txtSleep.value, hours) Then MsgBox "Enter numeric sleep hours between 0 and 24.", vbExclamation: Exit Sub
+    SaveSleep cbDayOfWeek.value, hours
+    Me.Hide
+    Exit Sub
+Failed:
+    MsgBox Err.Description, vbExclamation
+End Sub

@@ -1,0 +1,139 @@
+{
+  "workbook": "Group 21 Time Managemnt Tool.xlsm",
+  "workbook_sha256": "4a4532b6c1f0872c527fe98c55b6fddfabd81e0f92b6c664f0b32068494b8caf",
+  "format": "VBA source text; forms and host classes are not full designer exports",
+  "components": [
+    {
+      "component": "AddSleepForm.frm",
+      "stream": "VBA/AddSleepForm",
+      "path": "forms/AddSleepForm.frm.txt",
+      "sha256": "252380ffb7b6865fd1f165f2b3cddd91341b6b7dc2f57780966b464c084636e5"
+    },
+    {
+      "component": "AddTaskForm.frm",
+      "stream": "VBA/AddTaskForm",
+      "path": "forms/AddTaskForm.frm.txt",
+      "sha256": "2dedeac34bdb617611b05adedeb3d46b0d0bc161765cf9d1d1dc2a3ea940fc83"
+    },
+    {
+      "component": "MentalHealthForm.frm",
+      "stream": "VBA/MentalHealthForm",
+      "path": "forms/MentalHealthForm.frm.txt",
+      "sha256": "6b124931c22de2a74ad883c2f6d8429170cea4ac97a64eb8f360b80c7b9a0b2d"
+    },
+    {
+      "component": "Sheet1.cls",
+      "stream": "VBA/Sheet1",
+      "path": "host/Sheet1.cls.txt",
+      "sha256": "ee08280149ea59411e896898da9db52e7f409b5fb1b5c4de74243777e15815f4"
+    },
+    {
+      "component": "Sheet2.cls",
+      "stream": "VBA/Sheet2",
+      "path": "host/Sheet2.cls.txt",
+      "sha256": "dc376b793fba21d513981980134985420f047eb03b475bbd265b8cfc540b7cd7"
+    },
+    {
+      "component": "Sheet3.cls",
+      "stream": "VBA/Sheet3",
+      "path": "host/Sheet3.cls.txt",
+      "sha256": "349bf88f4ccb9f4e6f4c03018ee929fc6baac657cc625a71cf38d2903a65230f"
+    },
+    {
+      "component": "Sheet4.cls",
+      "stream": "VBA/Sheet4",
+      "path": "host/Sheet4.cls.txt",
+      "sha256": "32be86fa95cfdd0576008e6fcb42fecf671d383a01d30e4c403ff7591c15a0bc"
+    },
+    {
+      "component": "Sheet5.cls",
+      "stream": "VBA/Sheet5",
+      "path": "host/Sheet5.cls.txt",
+      "sha256": "66341632b5b7d495b446a06cdbaadb2aae3a537c7ba869e9ae193374ffb0dd5c"
+    },
+    {
+      "component": "Sheet6.cls",
+      "stream": "VBA/Sheet6",
+      "path": "host/Sheet6.cls.txt",
+      "sha256": "c0f315bba1b8eefa0692880a2084c3de4b84ae805017ad2b4d96f8434177dd3f"
+    },
+    {
+      "component": "Sheet7.cls",
+      "stream": "VBA/Sheet7",
+      "path": "host/Sheet7.cls.txt",
+      "sha256": "e9cda631da23f8806840cac8d89c4e68f3cbf55634cea65c3bdfdd4df841fd67"
+    },
+    {
+      "component": "Sheet8.cls",
+      "stream": "VBA/Sheet8",
+      "path": "host/Sheet8.cls.txt",
+      "sha256": "62beb93108ff68c773393f3c64fdfc2d683f79e0dfd4b2fe519d06a49f818ed4"
+    },
+    {
+      "component": "ThisWorkbook.cls",
+      "stream": "VBA/ThisWorkbook",
+      "path": "host/ThisWorkbook.cls.txt",
+      "sha256": "cff01a8f91a5616bc571a2ecb74b90daf3f31b09197f75cae144af48ff640363"
+    },
+    {
+      "component": "Module1.bas",
+      "stream": "VBA/Module1",
+      "path": "modules/Module1.bas",
+      "sha256": "15fe9bfc3012b9fc177abb342e67a2d437cb5073557e4ecc6be9937b3f43bbca"
+    },
+    {
+      "component": "Module2.bas",
+      "stream": "VBA/Module2",
+      "path": "modules/Module2.bas",
+      "sha256": "3745d6d381a861385f9d1ffc3d80344d8a7947c822fd390e7e667556f25eeea3"
+    },
+    {
+      "component": "Module3.bas",
+      "stream": "VBA/Module3",
+      "path": "modules/Module3.bas",
+      "sha256": "12077e1eaf89c5df32bbc92a01c361b5bf174cc995496cf3233a66c42e830627"
+    },
+    {
+      "component": "Module4.bas",
+      "stream": "VBA/Module4",
+      "path": "modules/Module4.bas",
+      "sha256": "55b621b4eaa5a8bc510a3ee3e82bba3e655aac4e84eef8e73ce2a154f78c2168"
+    },
+    {
+      "component": "Module5.bas",
+      "stream": "VBA/Module5",
+      "path": "modules/Module5.bas",
+      "sha256": "d194281230efb37e9bc7ba241ba2c3f30194492e0e7dc2018e53cc142dd7555c"
+    },
+    {
+      "component": "SleepService.bas",
+      "stream": "VBA/SleepService",
+      "path": "modules/SleepService.bas",
+      "sha256": "f7e90b71735c08c16d0ae85e87b837939459c37bf27b43379530cd9e22f3bb4d"
+    },
+    {
+      "component": "TaskCharts.bas",
+      "stream": "VBA/TaskCharts",
+      "path": "modules/TaskCharts.bas",
+      "sha256": "3257c56dc32f5549676f7cbbf7131cf2a368f42b3cbeb37f9c7c854926bd77a7"
+    },
+    {
+      "component": "TaskData.bas",
+      "stream": "VBA/TaskData",
+      "path": "modules/TaskData.bas",
+      "sha256": "b1b981c0c76eac581934b34bf7254a8c7c75afeabcda7ee4f3f781f9a0b0896f"
+    },
+    {
+      "component": "TaskViews.bas",
+      "stream": "VBA/TaskViews",
+      "path": "modules/TaskViews.bas",
+      "sha256": "5e3024b1362365be685a780bae640c654dd523571b1bac86e24c6c2de7cc85fd"
+    },
+    {
+      "component": "WorkbookSupport.bas",
+      "stream": "VBA/WorkbookSupport",
+      "path": "modules/WorkbookSupport.bas",
+      "sha256": "4e8ff90bc376ce8e0cbf2fc6f0bf485bee0767e12ef02d44d2b31c2461c955f2"
+    }
+  ]
+}
